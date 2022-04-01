@@ -2,6 +2,7 @@
 #include <encryption.h>
 
 int main(){
-    std::cout << a << std::endl;
+    Encryption encr;
+    std::cout << encr.get_private_key() << std::endl;
     return 0;
 }
