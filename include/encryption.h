@@ -27,7 +27,7 @@ public:
 
     Encryption(const std::string p_string, const std::string x_string, const std::string y_string, const std::string n_string);
 
-    sigMessage Sign(uint256_t message);
+    sigMessage Sign(std::string message_text);
 
     uint256_t gcd(uint256_t num1, uint256_t num2, uint256_t &x, uint256_t &y); // advanced euclid algorithm
 
