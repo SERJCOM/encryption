@@ -135,7 +135,9 @@ Encryption::PublicKey Encryption::CreatePublicKey(){
     return pr;
 }
 
-bool Encryption::Verify(Encryption::PublicKey public_key, Encryption::sigMessage signature, uint256_t text){
+bool Encryption::Verify(Encryption::PublicKey public_key, Encryption::sigMessage signature, std::string message_text){
+    uint256_t text = uint256_t(message_text, 10);
+
     bool flag = false;
     if(signature.r >= 1 && signature.r < this->n - 1 && signature.message >= 1 && signature.message < this->n - 1){
         uint256_t xgcd, ygcd, w, u, v, xuG, yuG, xvQ = public_key.x, yvQ = public_key.y;

@@ -19,7 +19,7 @@ public:
 
     void SetPrivateKey(std::string private_key);
 
-    bool Verify(PublicKey public_key, Encryption::sigMessage signature, uint256_t text);
+    bool Verify(PublicKey public_key, Encryption::sigMessage signature, std::string text);
 
     uint256_t GetPrivateKey();
 
@@ -31,12 +31,12 @@ public:
 
     uint256_t gcd(uint256_t num1, uint256_t num2, uint256_t &x, uint256_t &y); // advanced euclid algorithm
 
-    uint256_t p;
+    PublicKey public_key ;
+    sigMessage signedMessage;
 
 private:
     uint256_t private_key;
-    uint256_t public_key ;
-    
+    uint256_t p;
     uint256_t n;
     uint256_t message_hash;
     //base point

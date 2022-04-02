@@ -18,8 +18,11 @@ int main(){
 
     encr.SetPrivateKey(private_key);
 
-    
-    std::cout << encr.GetPrivateKey();
+
+    encr.signedMessage = encr.Sign(message);
+
+    encr.public_key = encr.CreatePublicKey();
+    std::cout << "bool " << encr.Verify(encr.public_key, encr.signedMessage, message); 
     
     return 0;
 }
