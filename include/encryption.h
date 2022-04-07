@@ -34,7 +34,7 @@ public:
 
     void point_multiplication(cpp_int multiplier, cpp_int &x, cpp_int &y);
 
-    PublicKey public_key ;
+    PublicKey public_key;
     sigMessage signedMessage;
 
 private:

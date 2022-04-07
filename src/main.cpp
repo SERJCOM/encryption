@@ -16,13 +16,12 @@ int main(){
     std::string n = "115792089237316195423570985008687907852837564279074904382605163141518161494337";
     std::string private_key = "115792089237316195423570985008687907853269984665640564039457584007908834671663";
     std::string message = "31272006352818487860575454286046758918581076444685961675641400200272101685731";
+
     Encryption encr(p,x,y,n);
 
     encr.SetPrivateKey(private_key);
 
     std::cout << "PROGRAM STARTED\n"; 
-
-    cpp_int x1 = 2,y1 = 22;
 
     encr.public_key = encr.CreatePublicKey();
 
