@@ -1,5 +1,5 @@
 # encryption
-ECC ENCRYPTION C++ 
+ECC ENCRYPTION C++  secp256k1 SECP256K1 Elliptic curve cryptography LIBRARY library
 
 To use my library first of all you need to download this repository with command "git clone --reverse https://github.com/SERJCOM/encryption"
 
