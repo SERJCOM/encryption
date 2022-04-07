@@ -1,8 +1,10 @@
 #include <iostream>
 #include "encryption.h"
-#include "uint256_t.h" 
 #include <string>
 #include <ctime>
+#include <boost/multiprecision/cpp_int.hpp>
+
+using namespace boost::multiprecision;
 
 int main(){
 
@@ -18,11 +20,24 @@ int main(){
 
     encr.SetPrivateKey(private_key);
 
+    std::cout << "PROGRAM STARTED\n"; 
+
+    cpp_int x1 = 2,y1 = 22;
+
+    encr.public_key = encr.CreatePublicKey();
+
+    std::cout << "WAS CREATED PUBLIK KEY\n"; 
 
     encr.signedMessage = encr.Sign(message);
 
-    encr.public_key = encr.CreatePublicKey();
-    std::cout << "bool " << encr.Verify(encr.public_key, encr.signedMessage, message); 
+    std::cout << "SIGNED\n"; 
+    
+    if(encr.Verify(encr.public_key, encr.signedMessage, message)){
+        std::cout << "TRUE";
+    }
+    else{
+        std::cout << "FALSE";
+    }
     
     return 0;
 }

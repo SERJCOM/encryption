@@ -1,18 +1,19 @@
 #pragma once
 
 #include <string>
-#include "uint256_t.h" 
+#include <boost/multiprecision/cpp_int.hpp>
 
+using namespace boost::multiprecision;
 
 class Encryption{
 public:
 
     struct sigMessage{
-        uint256_t r, message;
+        cpp_int r, message;
     };
 
     struct PublicKey{
-        uint256_t x,y;
+        cpp_int x,y;
     };
 
     PublicKey CreatePublicKey();
@@ -21,37 +22,34 @@ public:
 
     bool Verify(PublicKey public_key, Encryption::sigMessage signature, std::string text);
 
-    uint256_t GetPrivateKey();
+    cpp_int GetPrivateKey();
 
-	uint256_t GenerateSignature(uint256_t private_key, std::string text);
+	cpp_int GenerateSignature(cpp_int private_key, std::string text);
 
     Encryption(const std::string p_string, const std::string x_string, const std::string y_string, const std::string n_string);
 
     sigMessage Sign(std::string message_text);
 
-    uint256_t gcd(uint256_t num1, uint256_t num2, uint256_t &x, uint256_t &y); // advanced euclid algorithm
+    cpp_int gcd(cpp_int num1, cpp_int num2, cpp_int &x, cpp_int &y); // advanced euclid algorithm
+
+    void point_multiplication(cpp_int multiplier, cpp_int &x, cpp_int &y);
 
     PublicKey public_key ;
     sigMessage signedMessage;
 
 private:
-    uint256_t private_key;
-    uint256_t p;
-    uint256_t n;
-    uint256_t message_hash;
+    cpp_int private_key;
+    cpp_int p;
+    cpp_int n;
+    cpp_int message_hash;
     //base point
-    uint256_t x = 0;
-    uint256_t y = 0;
+    cpp_int x = 0;
+    cpp_int y = 0;
     
-    uint256_t s(uint256_t x1,uint256_t y1,uint256_t x2,uint256_t y2);
+    cpp_int s(cpp_int x1,cpp_int y1,cpp_int x2,cpp_int y2);
 
-    uint256_t xNew(uint256_t x1, uint256_t x2, uint256_t result_s);
+    cpp_int xNew(cpp_int x1, cpp_int x2, cpp_int result_s);
 
-    uint256_t yNew(uint256_t x1, uint256_t x3, uint256_t y1 , uint256_t result_s);
-
-    
-
-    void point_multiplication(uint256_t multiplier, uint256_t &x, uint256_t &y);
-
+    cpp_int yNew(cpp_int x1, cpp_int x3, cpp_int y1 , cpp_int result_s);
     
 };
