@@ -11,11 +11,6 @@ using namespace boost::random;
 #include <ctime>
 #include <random>
 
-
-// TO DO
-// СДЕЛАТЬ РЕАЛИЗАЦИЮ ФУНКЦИИ S, SetPrivateKey, Verify, GetPrivateKey, GenerateSignature, 
-// ПОМЕНЯТЬ ПЕРЕМЕННУЮ n НА КОНСТАНТУ 
-
 mt19937 mt;
 uniform_int_distribution<cpp_int> ui(-(cpp_int(1) << 256), cpp_int(1) << 256);
 
@@ -35,7 +30,6 @@ Encryption::Encryption(const std::string p_string, const std::string x_string, c
 }
 
 void Encryption::SetPrivateKey(const std::string privatekey){
-    
     uint8_t base = 10;
     this->private_key = cpp_int(privatekey);
 }
@@ -73,32 +67,24 @@ cpp_int Encryption::xNew(cpp_int x1, cpp_int x2, cpp_int result_s){
     return remainder(result_s * result_s - x1 - x2, this->p);
 }
 
-cpp_int Encryption::yNew(cpp_int x1, cpp_int x3, cpp_int y1 , cpp_int result_s){
-    
+cpp_int Encryption::yNew(cpp_int x1, cpp_int x3, cpp_int y1 , cpp_int result_s){    
     cpp_int vit = x1 - x3;
     cpp_int umn = result_s * vit - y1;
-    
     return remainder(umn, this->p);
 }
 void Encryption::point_multiplication(cpp_int multiplier, cpp_int &x, cpp_int &y){
-
     struct point{
         cpp_int x, y;
     };
-
     std::vector <cpp_int> a;
     std::vector <point> b; 
-
     cpp_int xa = x;
     cpp_int ya = y;
-
     cpp_int new_multiplier = 1;
-
     int count = 0;
     while(new_multiplier != multiplier && new_multiplier < multiplier){
         a.push_back(new_multiplier);
-        b.push_back({xa,ya});
-        
+        b.push_back({xa,ya}); 
         if(new_multiplier * 2 <= multiplier){
             new_multiplier = new_multiplier * 2;
             cpp_int result = s(xa,ya,xa,ya);
@@ -131,7 +117,7 @@ Encryption::sigMessage Encryption::Sign(std::string message_text){
     k = ui(mt);
     cpp_int x = this->x, y = this->y, xgcd, ygcd;
     point_multiplication(k, x,y);
-    r = x % n;
+    r = remainder(x, n);
     cpp_int gcdnew = gcd(this->n, k, xgcd,ygcd);
     message = remainder((message + r * this->private_key) * ygcd, this->n);
     sig.message = message;
@@ -149,16 +135,12 @@ Encryption::PublicKey Encryption::CreatePublicKey(){
 
 bool Encryption::Verify(Encryption::PublicKey public_key, Encryption::sigMessage signature, std::string message_text){
     cpp_int text = cpp_int(message_text);
-
     bool flag = false;
     if(signature.r >= 1 && signature.r < this->n - 1 && signature.message >= 1 && signature.message < this->n - 1){
         cpp_int xgcd, ygcd, w, u, v, xuG = this->x, yuG = this->y, xvQ = public_key.x, yvQ = public_key.y;
         w = gcd(n, signature.message, xgcd, ygcd);
-
         w = ygcd;
-
         u = remainder((text * w), this->n);
-
         v = remainder((signature.r * w), this->n);  
         point_multiplication(u,  xuG, yuG);
         point_multiplication(v, xvQ , yvQ);
