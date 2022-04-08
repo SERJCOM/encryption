@@ -1,1 +1,55 @@
 
+[submodule "libs/multiprecision"]
+	path = libs/multiprecision
+	url = https://github.com/boostorg/multiprecision
+[submodule "libs/config"]
+	path = libs/config
+	url = https://github.com/boostorg/config
+[submodule "libs/random"]
+	path = libs/random
+	url = https://github.com/boostorg/random
+[submodule "libs/core"]
+	path = libs/core
+	url = https://github.com/boostorg/core
+[submodule "libs/system"]
+	path = libs/system
+	url = https://github.com/boostorg/system
+[submodule "libs/type_traits"]
+	path = libs/type_traits
+	url = https://github.com/boostorg/type_traits
+[submodule "libs/assert"]
+	path = libs/assert
+	url = https://github.com/boostorg/assert
+[submodule "libs/static_assert"]
+	path = libs/static_assert
+	url = https://github.com/boostorg/static_assert
+[submodule "libs/integer"]
+	path = libs/integer
+	url = https://github.com/boostorg/integer
+[submodule "libs/throw_exception"]
+	path = libs/throw_exception
+	url = https://github.com/boostorg/throw_exception
+[submodule "libs/array"]
+	path = libs/array
+	url = https://github.com/boostorg/array
+[submodule "libs/range"]
+	path = libs/range
+	url = https://github.com/boostorg/range
+[submodule "libs/preprocessor"]
+	path = libs/preprocessor
+	url = https://github.com/boostorg/preprocessor
+[submodule "libs/mpl"]
+	path = libs/mpl
+	url = https://github.com/boostorg/mpl
+[submodule "libs/iterator"]
+	path = libs/iterator
+	url = https://github.com/boostorg/iterator
+[submodule "libs/io"]
+	path = libs/io
+	url = https://github.com/boostorg/io
+[submodule "libs/concept_check"]
+	path = libs/concept_check
+	url = https://github.com/boostorg/concept_check
+[submodule "libs/utility"]
+	path = libs/utility
+	url = https://github.com/boostorg/utility
