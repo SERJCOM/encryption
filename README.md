@@ -6,14 +6,14 @@ To use my library first of all you need to download this repository with command
 `git clone --recursive https://github.com/SERJCOM/encryption`
 
 after that, you can initialize the encryption with the parameters you need.
-...
+'''
 - std::string p; // the number that characterizes the finite field
 - std::string x; // x coordinate of your base point
 - std::string y; // y coordinate of your base point
 - std::string n; // the random number
 - std::string private_key; // the random number
 - std::string message; // sha256 of your message
-...
+'''
 and enter these parameters when creating a class object.
 
 To set your private key you need use this method: SetPrivateKey(private_key);
